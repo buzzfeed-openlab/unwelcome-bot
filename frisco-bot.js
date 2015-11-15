@@ -8,9 +8,11 @@ var Twit = require('twit'),
 var FriscoBot = module.exports = function(config) {
     var filterWords = config.filterWords,
         requiredWords = config.requiredWords,
-        trackWords = config.track;
+        trackWords = config.track,
+        rateLimit = config.rateLimit || 0,
+        timeLastTweet = 0;
 
-    // normalize all the filtered and required words
+    // normalize all the filtered, required, and tracked words
     filterWords = filterWords.map(this.normalizeText);
     requiredWords = requiredWords.map(this.normalizeText);
     trackWords = trackWords.map(this.normalizeText);
@@ -51,6 +53,9 @@ var FriscoBot = module.exports = function(config) {
             return;
         }
 
+        var timeNow = +(new Date()),
+            shouldRateLimit = timeNow < timeLastTweet + rateLimit;
+
         // be careful what you do this this...
         var response = this.generateResponse(tweet, config.responses);
 
@@ -58,16 +63,21 @@ var FriscoBot = module.exports = function(config) {
         console.log('user:', tweet.user.screen_name);
         console.log('tweet:', tweet.text);
         console.log('response:', response);
+        console.log('rateLimited:', shouldRateLimit);
         console.log('-------');
 
-        if (config.reallyActuallyTweet) {
-            twit.post('statuses/update', { status: response }, function(err, data, response) {
-                if (err) {
-                    console.log('Error:\n', err);
-                }
-            });
-        }
+        if (!shouldRateLimit) {
+            timeLastTweet = timeNow;
 
+            if (config.reallyActuallyTweet) {
+                twit.post('statuses/update', { status: response }, function(err, data, response) {
+                    if (err) {
+                        console.log('Error:\n', err);
+                    }
+                });
+            }
+        }
+        
     }.bind(this));
 
     stream.on('error', function(err) {

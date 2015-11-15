@@ -38,7 +38,8 @@
     ],
 
     "requiredWords": [
-        "San Francisco"
+        "San Francisco",
+        "SanFrancisco"
     ],
 
     "responses": [
@@ -46,6 +47,8 @@
         "San Francisco? Do you mean Frisco?",
         "Did you mean to say \"Frisco\"?"
     ],
+
+    "rateLimit": 30000,
 
     "reallyActuallyTweet": false
 }

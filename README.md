@@ -34,5 +34,8 @@ An array of strings used to filter incoming tweets (if a tweet does not contain 
 #### "responses"
 An array of strings used to tweet responses.
 
+#### "rateLimit"
+A minimum number of seconds to wait between tweets.
+
 #### "reallyActuallyTweet"
 Are you sure? The bot will run but wont actually tweet until `reallyActuallyTweet` is set to `true`.
