@@ -1,5 +1,7 @@
+var configPath = (process.argv[2] || './config.json');
 
-var Twit = require('twit');
+var Twit = require('twit'),
+    config = require(configPath);
 
 var FriscoBot = module.exports = function(config) {
     var filterWords = config.filterWords,
@@ -92,3 +94,6 @@ function randInt(min, max) {
 function randFromArray(arr) {
     return arr[randInt(0, arr.length)];
 };
+
+// run free, little twitter bot...
+var bot = new FriscoBot(config);
