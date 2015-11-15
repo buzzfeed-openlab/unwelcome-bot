@@ -3,15 +3,17 @@ var Twit = require('twit');
 
 var FriscoBot = module.exports = function(config) {
     var filterWords = config.filterWords,
-        requiredWords = config.requiredWords;
+        requiredWords = config.requiredWords,
+        trackWords = config.track;
 
     // normalize all the filtered and required words
     filterWords = filterWords.map(this.normalizeText);
     requiredWords = requiredWords.map(this.normalizeText);
+    trackWords = trackWords.map(this.normalizeText);
 
     // set up twitter stream
     var twit = new Twit(config.twitterCredentials),
-        stream = twit.stream('statuses/filter', { track: config.track });
+        stream = twit.stream('statuses/filter', { track: trackWords });
 
     stream.on('tweet', function(tweet) {
         var text = this.normalizeText(tweet.text);
@@ -29,6 +31,14 @@ var FriscoBot = module.exports = function(config) {
                 console.log('required > ', tweet.text);
                 return;
             }
+        }
+
+        // does the actual tweet text contain a tracked word?
+        // twitter might return us things that link to other
+        // things containing tracked words
+        if (!containsAnyOf(trackWords, text)) {
+            console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~');
+            return;
         }
 
         // be careful what you do this this...
