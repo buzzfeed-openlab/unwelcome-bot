@@ -5,7 +5,7 @@
 
 1. `git clone https://github.com/buzzfeed-openlab/frisco-bot.git`
 2. `cd ./frisco-bot; npm install`
-3. create a `twitterCreds.json` file containing:
+3. Create a `twitterCreds.json` file containing:
 
   ```json
   {
