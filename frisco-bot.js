@@ -31,6 +31,7 @@ var FriscoBot = module.exports = function(config) {
             }
         }
 
+        // be careful what you do this this...
         var response = this.generateResponse(tweet, config.responses);
 
         console.log('-------');
