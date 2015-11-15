@@ -1,0 +1,46 @@
+{
+    "track": ["San Francisco"],
+
+    "filterWords": [
+        "fire",
+        "crash",
+        "emergency",
+        "tragedy",
+        "injur",
+        "casualties",
+        "accident",
+        "rescue",
+        "gun",
+        "weapon",
+        "hospital",
+        "terror",
+        "fight",
+        "dead",
+        "hurt",
+        "afraid",
+        "earth",
+        "quake",
+        "devastated",
+        "breaking",
+        "shot",
+        "hit",
+        "bomb",
+        "solidarity",
+        "stands with",
+        "prayer",
+        "those lost",
+        "parisshooting",
+        "parisattacks"
+    ],
+
+    "requiredWords": [
+    ],
+
+    "responses": [
+        "I think you mean \"Frisco\"...",
+        "San Francisco? Do you mean Frisco?",
+        "Did you mean to say \"Frisco\"?"
+    ],
+
+    "reallyActuallyTweet": false
+}

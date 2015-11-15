@@ -1,7 +1,9 @@
-var configPath = (process.argv[2] || './config.json');
+var configPath = (process.argv[2] || './config.json'),
+    credsPath = (process.argv[3] || './twitterCreds.json');
 
 var Twit = require('twit'),
-    config = require(configPath);
+    config = require(configPath),
+    twitterCreds = require(credsPath);
 
 var FriscoBot = module.exports = function(config) {
     var filterWords = config.filterWords,
@@ -14,7 +16,7 @@ var FriscoBot = module.exports = function(config) {
     trackWords = trackWords.map(this.normalizeText);
 
     // set up twitter stream
-    var twit = new Twit(config.twitterCredentials),
+    var twit = new Twit(twitterCreds),
         stream = twit.stream('statuses/filter', { track: trackWords });
 
     stream.on('tweet', function(tweet) {
