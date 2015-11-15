@@ -7,7 +7,7 @@
   "engines": {
     "node": ">=0.8.0"
   },
-  "main": "./run.js",
+  "main": "./frisco-bot.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/buzzfeed-openlab/frisco-bot"
