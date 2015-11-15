@@ -1,5 +1,5 @@
 # Frisco Bot
-###### Did you mean to say "Frisco"?
+###### I think you mean "Frisco"
 
 ## How to run
 
@@ -21,6 +21,9 @@
 
 #### "track"
 An array of strings that will be used to subscribe to a twitter stream.
+
+#### "location"
+An array of latitude and longitude positions that will be used to subscribe to a twitter stream. Note that this is an additive filter, so if you want the intersection of tweets in a location and containing certain words, you have to use "location" and "requiredWords", not "track".
 
 #### "filterWords"
 An array of strings used to filter incoming tweets (if a tweet contains any of the `filterWords`, it will be ignored).

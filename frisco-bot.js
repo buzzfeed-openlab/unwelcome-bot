@@ -15,19 +15,26 @@ var FriscoBot = module.exports = function(config) {
     requiredWords = requiredWords.map(this.normalizeText);
     trackWords = trackWords.map(this.normalizeText);
 
-    // set up twitter stream
+    // add trackWords to required words because twitter
+    // will include tweets that don't directly include
+    // trackWords but link to things that do
+    requiredWords = requiredWords.concat(trackWords);
+
+    // set up twitter stream using filters
     var twit = new Twit(twitterCreds),
-        stream = twit.stream('statuses/filter', { track: trackWords });
+        filters = {};
+
+    if (trackWords.length) {
+        filters['track'] = trackWords;
+    }
+    if (config.locations && config.locations.length) {
+        filters['locations'] = config.locations;
+    }
+
+    var stream = twit.stream('statuses/filter', filters);
 
     stream.on('tweet', function(tweet) {
         var text = this.normalizeText(tweet.text);
-
-        // filter out tweets that could be sensitive
-        var filteredWord = containsAnyOf(filterWords, text);
-        if (filteredWord) {
-            console.log('filtered > ', filteredWord);
-            return;
-        }
 
         // if there are required words, filter tweets without them
         if (requiredWords && requiredWords.length) {
@@ -37,11 +44,10 @@ var FriscoBot = module.exports = function(config) {
             }
         }
 
-        // does the actual tweet text contain a tracked word?
-        // twitter might return us things that link to other
-        // things containing tracked words
-        if (!containsAnyOf(trackWords, text)) {
-            console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~');
+        // filter out tweets that could be sensitive
+        var filteredWord = containsAnyOf(filterWords, text);
+        if (filteredWord) {
+            console.log('filtered > ', filteredWord);
             return;
         }
 

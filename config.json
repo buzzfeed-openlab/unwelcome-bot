@@ -1,5 +1,7 @@
 {
-    "track": ["San Francisco"],
+    "track": [],
+
+    "locations": ["-122.75", "36.8", "-121.75", "37.8"],
 
     "filterWords": [
         "fire",
@@ -30,10 +32,13 @@
         "prayer",
         "those lost",
         "parisshooting",
-        "parisattacks"
+        "parisattacks",
+        "france",
+        "french"
     ],
 
     "requiredWords": [
+        "San Francisco"
     ],
 
     "responses": [
