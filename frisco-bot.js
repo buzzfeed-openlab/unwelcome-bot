@@ -17,25 +17,15 @@ var FriscoBot = module.exports = function(config) {
         var text = this.normalizeText(tweet.text);
 
         // filter out tweets that could be sensitive
-        for (var i = 0; i < filterWords.length; ++i) {
-            if (text.indexOf(filterWords[i]) != -1) {
-                console.log('filtered > ', filterWords[i]);
-                return;
-            }
+        var filteredWord = this.containsAnyOf(filterWords, text);
+        if (filteredWord) {
+            console.log('filtered > ', filteredWord);
+            return;
         }
 
         // if there are required words, filter tweets without them
         if (requiredWords && requiredWords.length) {
-            var foundMatch = false;
-
-            for (var i = 0; i < requiredWords.length; ++i) {
-                if (text.indexOf(requiredWords[i]) != -1) {
-                    foundMatch = true;
-                    break;
-                }
-            }
-
-            if (!foundMatch) {
+            if (!this.containsAnyOf(requiredWords, text)) {
                 console.log('required > ', tweet.text);
                 return;
             }
@@ -55,4 +45,13 @@ var FriscoBot = module.exports = function(config) {
 
 FriscoBot.prototype.normalizeText = function(text) {
     return text.toLowerCase();
+};
+
+FriscoBot.prototype.containsAnyOf = function(needles, haystack) {
+    for (var i = 0; i < needles.length; ++i) {
+        if (haystack.indexOf(needles[i]) != -1) {
+            return needles[i];
+        }
+    }
+    return undefined;
 };
