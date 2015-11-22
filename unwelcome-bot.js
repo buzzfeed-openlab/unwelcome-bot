@@ -5,7 +5,7 @@ var Twit = require('twit'),
     config = require(configPath),
     twitterCreds = require(credsPath);
 
-var FriscoBot = module.exports = function(config) {
+var UnwelcomeBot = module.exports = function(config) {
     var filterWords = config.filterWords,
         requiredWords = config.requiredWords,
         trackWords = config.track,
@@ -85,11 +85,11 @@ var FriscoBot = module.exports = function(config) {
     });
 };
 
-FriscoBot.prototype.normalizeText = function(text) {
+UnwelcomeBot.prototype.normalizeText = function(text) {
     return text.toLowerCase();
 };
 
-FriscoBot.prototype.generateResponse = function(tweet, responses) {
+UnwelcomeBot.prototype.generateResponse = function(tweet, responses) {
     var response = '@' + tweet.user.screen_name + ' ';
     response += randFromArray(responses);
 
@@ -114,4 +114,4 @@ function randFromArray(arr) {
 };
 
 // run free, little twitter bot...
-var bot = new FriscoBot(config);
+var bot = new UnwelcomeBot(config);

@@ -1,5 +1,5 @@
 {
-  "name": "frisco-bot",
+  "name": "unwelcome-bot",
   "version": "0.0.1",
   "dependencies": {
     "twit": "2.1.x"
@@ -7,12 +7,12 @@
   "engines": {
     "node": ">=0.8.0"
   },
-  "main": "./frisco-bot.js",
+  "main": "./unwelcome-bot.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/buzzfeed-openlab/frisco-bot"
+    "url": "https://github.com/buzzfeed-openlab/unwelcome-bot"
   },
   "bugs": {
-    "url": "https://github.com/buzzfeed-openlab/frisco-bot/issues"
+    "url": "https://github.com/buzzfeed-openlab/unwelcome-bot/issues"
   }
 }

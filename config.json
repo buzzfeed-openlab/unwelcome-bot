@@ -1,7 +1,9 @@
 {
-    "track": [],
+    "track": [
+        "bellweather"
+    ],
 
-    "locations": ["-122.75", "36.8", "-121.75", "37.8"],
+    "locations": [],
 
     "filterWords": [
         "fire",
@@ -19,6 +21,7 @@
         "fight",
         "dead",
         "hurt",
+        "stab",
         "afraid",
         "earth",
         "quake",
@@ -28,24 +31,16 @@
         "hit",
         "bomb",
         "solidarity",
-        "stands with",
         "prayer",
-        "those lost",
-        "parisshooting",
-        "parisattacks",
-        "france",
-        "french"
+        "stands with",
+        "those lost"
     ],
 
-    "requiredWords": [
-        "San Francisco",
-        "SanFrancisco"
-    ],
+    "requiredWords": [],
 
     "responses": [
-        "I think you mean \"Frisco\"...",
-        "San Francisco? Do you mean Frisco?",
-        "Did you mean to say \"Frisco\"?"
+        "Did you mean \"bellwether\"?",
+        "I share your enthusiasm for ringing bells, but I'm not sure this is the right weather..."
     ],
 
     "rateLimit": 30000,
