@@ -70,7 +70,7 @@ var UnwelcomeBot = module.exports = function(config) {
             timeLastTweet = timeNow;
 
             if (config.reallyActuallyTweet) {
-                twit.post('statuses/update', { status: response }, function(err, data, response) {
+                twit.post('statuses/update', { in_reply_to_status_id: tweet.id_str, status: response }, function(err, data, response) {
                     if (err) {
                         console.log('Error:\n', err);
                     }
